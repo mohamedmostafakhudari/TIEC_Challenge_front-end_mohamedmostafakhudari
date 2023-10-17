@@ -1,15 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import Button from "@/components/Button";
-const Task = ({
-  title,
-  desc,
-  status,
-  onAdd,
-  onOpenEditModal,
-  onDelete,
-  className,
-}) => {
+const Task = ({ title, desc, status, onAdd, onEdit, onDelete, className }) => {
   const statusColor =
     status === "not started"
       ? "bg-red-700"
@@ -35,7 +27,7 @@ const Task = ({
         <p className="mx-auto max-w-[42ch] text-slate-700">{desc}</p>
       </div>
       <div className="mt-10 flex justify-center gap-4">
-        <Button label={"Edit"} onClick={onOpenEditModal} />
+        <Button label={"Edit"} onClick={onEdit} />
         <Button label={"Delete"} onClick={onDelete} />
       </div>
     </div>

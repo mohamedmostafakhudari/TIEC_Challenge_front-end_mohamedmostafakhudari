@@ -45,6 +45,7 @@ const initialTasks = [
 function App() {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [currentTaskId, setCurrentTaskId] = useState("");
   const [tasks, setTasks] = useState(initialTasks);
 
   function handleAdd(taskData) {
@@ -56,7 +57,6 @@ function App() {
     setAddModalOpen(false);
   }
   function handleEdit(taskData) {
-    console.log(taskData);
     const task = tasks.find((task) => {
       return task.id === id;
     });
@@ -85,9 +85,10 @@ function App() {
     <div className="">
       <Tasks
         tasks={tasks}
-        onOpenEditModal={() => setEditModalOpen(true)}
+        onEdit={handleEdit}
         onDelete={handleDelete}
         onOpenAddModal={() => setAddModalOpen(true)}
+        setCurrentTaskId={setCurrentTaskId}
       />
       <div
         className={clsx(

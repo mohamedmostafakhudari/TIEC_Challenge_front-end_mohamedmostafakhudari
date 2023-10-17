@@ -2,7 +2,13 @@ import React from "react";
 import Task from "@/components/Task";
 import AddTaskBox from "@/components/AddTaskBox";
 
-const Tasks = ({ tasks, onOpenEditModal, onDelete, onOpenAddModal }) => {
+const Tasks = ({
+  tasks,
+  setCurrentTaskId,
+  onEdit,
+  onDelete,
+  onOpenAddModal,
+}) => {
   return (
     <div className="container grid grid-cols-1 gap-10 md:grid-cols-2">
       <AddTaskBox onAdd={onOpenAddModal} />
@@ -12,8 +18,12 @@ const Tasks = ({ tasks, onOpenEditModal, onDelete, onOpenAddModal }) => {
           title={title}
           desc={desc}
           status={status}
-          onOpenEditModal={onOpenEditModal}
+          onEdit={() => {
+            onOpenEditModal();
+            setCurrentTaskId(id);
+          }}
           onDelete={(e) => onDelete(id)}
+          setCurrentTaskId={setCurrentTaskId}
           className={""}
         />
       ))}
